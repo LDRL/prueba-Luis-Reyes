@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  app_nomina:
+    image: node:18-alpine
+    container_name: app_nomina
+    volumes:
+      - ./:/app_nomina
+    working_dir: /app_nomina
+    ports:
+      - 5173:5173
+    command: npm start
+    tty: true
