@@ -1,35 +1,45 @@
 import { useState, useEffect } from 'react'
 import Mensaje from './Mensaje'
 import CerrarBtn from '../img/cerrar.svg'
-import axios from 'axios'
-const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmployee }) => {
+import { getEmployee, createEmployee, updateEmployee } from '../services/EmployeeService'
+import { ToastContainer,toast } from 'react-toastify'
+
+
+import { styled } from 'styled-components'
+const Modal = ({ setModal, animarModal, setAnimarModal, id, setId, employees, setEmployees }) => {
 
     const [mensaje, setMensaje] = useState('')
+    // const [id, setId] = useState('')
     const [nombre, setNombre] = useState('')
     const [salarioBase, setSalarioBase] = useState(0)
-    const [horaTrabajada, setHoraTrabajada] = useState('')
-
-    const [id, setId] = useState('')
+    const [horaTrabajada, setHoraTrabajada] = useState(0)
 
     useEffect(() => {
-        if (Object.keys(editEmployee).length > 0) {
-            setNombre(editEmployee.nombre);
-            setCantidad(editEmployee.salarioBase);
-            setCategoria(editEmployee.horaTrabajada);
-            setId(editEmployee.id);
+        console.log(id);
+        async function loadEmployee() {
+            if (id) {
+                const { data } = await getEmployee(id);
+                setNombre(data.nombre)
+                setSalarioBase(data.salario_base)
+                setHoraTrabajada(data.horas_trabajadas)
+                console.log(data);
+            }
         }
+        loadEmployee();
+
     }, []);
 
     const ocultarModal = () => {
         setAnimarModal(false)
-        setEditEmployee({})
+        setId("")
+        //setEditEmployee({})
 
         setTimeout(() => {
             setModal(false)
         }, 500);
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         if ([nombre, salarioBase, horaTrabajada].includes('')) {
@@ -41,12 +51,28 @@ const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmp
             return
         }
 
-        axios.post('http://127.0.0.1:8000/api/empleados/', {
+        const employee = {
             nombre: nombre,
             salario_base: salarioBase,
             horas_trabajadas: horaTrabajada
+        }
 
-        }).then(response => response.data)
+        if (id) {
+            const result = await updateEmployee(id, employee)
+            const UpdatesEmployee = employees.map(employeeState => employeeState.id === result.data.id ? result.data : employeeState);
+            setEmployees(UpdatesEmployee);
+
+            toast.success("Empleado actualizado",{
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff",
+                },
+            })
+        } else {
+            const resul = await createEmployee(employee);
+            setEmployees([...employees, resul.data])
+        }
 
         setAnimarModal(false)
 
@@ -66,7 +92,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmp
             <form
                 onSubmit={handleSubmit}
                 className={`formulario ${animarModal ? "animar" : 'cerrar'}`}>
-                <legend>{editEmployee.nombre ? 'Editar Empleado' : 'Nuevo Empleado'}</legend>
+                <legend>{id ? 'Editar Empleado' : 'Nuevo Empleado'}</legend>
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
@@ -76,7 +102,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmp
                     <input
                         id="nombre"
                         type="text"
-                        placeholder='Añade el nombre del gasto'
+                        placeholder='Añade el nombre del empleado'
                         value={nombre}
                         onChange={e => setNombre(e.target.value)}
                     />
@@ -95,8 +121,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmp
                 </div>
 
                 <div className='campo'>
-                    <label htmlFor="horatrabajada">Salario Base</label>
-
+                    <label htmlFor="horatrabajada">Horas trabajadas</label>
                     <input
                         id="horatrabajada"
                         type="number"
@@ -106,10 +131,8 @@ const Modal = ({ setModal, animarModal, setAnimarModal, editEmployee, setEditEmp
                     />
                 </div>
 
-
-
                 <input type="submit"
-                    value={editEmployee.nombre ? 'Editar gasto' : 'Añadir gasto'} />
+                    value={id ? 'Editar gasto' : 'Añadir gasto'} />
             </form>
         </div>
     )

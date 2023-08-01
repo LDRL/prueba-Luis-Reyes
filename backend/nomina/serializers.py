@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Empleado, User
+from .models import Empleado
 
 
 class EmployeSerializer(serializers.ModelSerializer):
@@ -13,12 +13,12 @@ class EmployeSerializer(serializers.ModelSerializer):
         )
         model = Empleado
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields =(
-            'id',
-            'name',
-            'password',
-            'token',
-        )
-        model = User
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         fields =(
+#             'id',
+#             'name',
+#             'password',
+#             'token',
+#         )
+#         model = User

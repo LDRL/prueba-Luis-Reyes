@@ -7,15 +7,17 @@
   --negro: #000;
 }
 
-body {
+/* body {
   font-size: 1.6rem;
   font-family: "Lato", sans-serif;
   background-color: var(--gris-claro);
-}
-html {
+} */
+
+/* html {
   font-size: 62.5%;
   box-sizing: border-box;
-}
+}  */
+
 *,
 *:before,
 *:after {
@@ -27,11 +29,12 @@ html {
   height: 100vh;
 }
 
-h1 {
+/* h1 {
   font-size: 4rem;
-}
+} */
+
 h2 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .sombra {
@@ -48,11 +51,10 @@ header {
 }
 
 header h1 {
-  padding: 3rem 0;
+  padding: 2rem 0;
   margin: 0;
   color: var(--blanco);
   text-align: center;
-
   text-transform: uppercase;
 }
 
@@ -61,43 +63,47 @@ header h1 {
   margin: 0 auto;
   padding: 10rem 0;
 }
+
 @media (min-width: 768px) {
   .formulario {
-      padding: 5rem 0;
-      width: 60rem;
+    padding: 5rem 0;
+    width: 60rem;
   }
 }
+
 .formulario legend {
-  font-size: 3.6rem;
+  font-size: 2.4rem;
   text-align: center;
   display: block;
   text-transform: uppercase;
   color: var(--blanco);
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--azul);
 }
+
 .formulario .campo {
   display: grid;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .formulario label {
   color: var(--azul);
-  font-size: 2.8rem;
+  font-size: 1rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .formulario input[type="text"],
 .formulario input[type="number"] {
   background-color: var(--gris-claro);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
   border: none;
   flex: 1;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
+
 .formulario input[type="submit"] {
   background-color: #1048a4;
   border: none;
@@ -111,12 +117,14 @@ header h1 {
   width: 100%;
   transition: background-color 300ms ease;
 }
+
 @media (min-width: 768px) {
   .formulario input[type="submit"] {
-      display: block;
-      padding: 1rem 5rem;
+    display: block;
+    padding: 1rem 5rem;
   }
 }
+
 .formulario input[type="submit"]:hover {
   background-color: #042a67;
   cursor: pointer;
@@ -132,87 +140,53 @@ header h1 {
 }
 
 .alerta {
-  padding: 2rem 5rem;
+  padding: 1rem 3rem;
   max-width: 60rem;
-  margin: 2rem auto 2rem auto;
+  margin: 1rem auto 1rem auto;
   font-weight: 900;
   text-transform: uppercase;
-  font-size: 1.8rem;
+  font-size: 1rem;
   text-align: center;
 }
+
 .alerta.error {
   background-color: var(--blanco);
   border-left: 5px solid #b91c1c;
   color: #b91c1c;
 }
-.alerta.success {
-}
+
+.alerta.success {}
 
 .contenedor {
   width: 90%;
   max-width: 80rem;
   margin: 0 auto;
 }
-.contenedor-presupuesto {
-  margin-top: -5rem;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  transform: translateY(5rem);
-}
 .dos-columnas {
   flex-direction: column;
 }
+
 .dos-columnas :first-child {
   margin-bottom: 4rem;
 }
+
 @media (min-width: 768px) {
   .dos-columnas {
-      flex-direction: row;
-      align-items: center;
-      gap: 4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
   }
-  .dos-columnas > div {
-      width: 50%;
+
+  .dos-columnas>div {
+    width: 50%;
   }
+
   .dos-columnas :first-child {
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
-.formulario input[type="text"].nuevo-presupuesto, 
-.formulario input[type="number"].nuevo-presupuesto {
-  font-size: 2.8rem;
-  text-align: center;
-}
 
-.contenedor-presupuesto svg {
-  width: 25rem;
-}
-
-.contenido-presupuesto {
-  width: 100%;
-}
-.contenido-presupuesto p {
-  font-weight: 400;
-  color: var(--gris-oscuro);
-  font-size: 2.4rem;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  .contenido-presupuesto p {
-      text-align: left;
-  }
-}
-.contenido-presupuesto p.negativo,
-.contenido-presupuesto p.negativo span {
-  color: #DC2626;
-}
-.contenido-presupuesto span {
-  font-weight: 900;
-  color: var(--azul);
-}
 .reset-app {
   border: none;
   background-color: #db2777;
@@ -226,6 +200,7 @@ header h1 {
   transition-property: background-color;
   transition-duration: 300ms;
 }
+
 .reset-app:hover {
   background-color: #c71465;
   cursor: pointer;
@@ -235,112 +210,31 @@ main {
   padding-top: 10rem;
 }
 
-.filtros .campo {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-.filtros label {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--gris-oscuro);
-}
-.filtros select {
-  flex: 1;
-  padding: 1rem;
-  border: none;
-  border-radius: 1rem;
-  text-align: center;
-  background-color: var(--gris-claro);
-}
-
-.listado-gastos {
-  margin-top: 5rem;
-}
-.listado-gastos h2 {
-  color: var(--gris-oscuro);
-  font-weight: 900;
-}
-.no-gastos {
-  text-align: center;
-  font-size: 2.2rem;
-}
-
-.gasto {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  width: 100%;
-}
-
-.cantidad-gasto {
-  font-size: 2.4rem;
-  color: var(--negro);
-  font-weight: 900;
-}
-
-.contenido-gasto {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.contenido-gasto img {
-  width: 10rem;
-}
-
-.descripcion-gasto p {
-  margin: 0 0 0.3rem 0;
-}
-.descripcion-gasto .categoria {
-  color: var(--gris);
-  font-size: 1.6rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-.descripcion-gasto p {
-  margin-bottom: 1rem;
-}
-.descripcion-gasto .nombre-gasto {
-  color: var(--gris-oscuro);
-  font-size: 2.4rem;
-  font-weight: 700;
-}
-.descripcion-gasto .nombre-gasto:hover {
-  cursor: pointer;
-}
-.descripcion-gasto .fecha-gasto {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--gris-oscuro);
-}
-.descripcion-gasto .fecha-gasto span {
-  font-weight: 400;
-}
-
-.nuevo-gasto {
+.nuevo {
   position: fixed;
   bottom: 5rem;
   right: 5rem;
 }
 
-.nuevo-gasto img {
+.nuevo img {
   width: 5rem;
 }
-.nuevo-gasto img:hover {
+
+.nuevo img:hover {
   cursor: pointer;
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   background-color: rgb(0 0 0 / 0.92);
-  top: 0;
+  top: -0;
   left: 0;
   right: 0;
   bottom: 0;
+  height: 100vh;
+  width: 100vw;
 }
+
 .modal .cerrar-modal {
   position: absolute;
   right: 3rem;
@@ -348,8 +242,9 @@ main {
   width: 3rem;
   height: 3rem;
 }
+
 .modal .cerrar-modal img {
-  width: 100%;
+  width: 80%;
 }
 
 .modal .formulario {
@@ -360,9 +255,11 @@ main {
   transition-timing-function: ease-in;
   opacity: 0;
 }
+
 .modal label {
   color: var(--blanco);
 }
+
 body .modal {
   overflow: hidden;
 }

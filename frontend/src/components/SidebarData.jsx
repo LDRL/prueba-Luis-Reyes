@@ -11,6 +11,5 @@ export const SidebarData = [
         icon: <AiIcons.AiFillHome />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
-    },
-    
+    },  
 ];

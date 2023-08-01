@@ -2,6 +2,7 @@ import styles from "./Wrapper.module.css";
 import classNames from "classnames";
 import * as FaIcons from "react-icons/fa";
 import { Outlet } from "react-router";
+import { Link } from "react-router-dom";
 
 const Wrapper = ({
     menuIconClick,
@@ -24,8 +25,9 @@ const Wrapper = ({
                             <a className="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                                 <i className="fa fa-envelope"></i><span className="label label-warning"></span>
                             </a>
-                          
                         </li>
+                        
+                        <Link to="/logout">Logout</Link>
 
                         <li>
                             <a href="#">

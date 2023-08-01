@@ -1,0 +1,50 @@
+.main {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 1.25rem; /* 20px */
+
+}
+
+
+@media (min-width: 768px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        margin-top: 5rem;
+        /* 80px */
+
+    }
+}
+
+
+
+@media (min-width: 768px) {
+    .main__block{
+        width: 66.666667%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main__block{
+        width: 40%;
+    }
+}
+/* className="md:w-2/3 lg:w-2/5"> */
+/* mx-auto mt-5 md:mt-20 p-5 md:flex md:justify-center */
+
+/*
+sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... } 
+ */

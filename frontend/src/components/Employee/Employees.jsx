@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getEmployees } from '../../services/EmployeeService';
+import { getEmployees, getEmployee } from '../../services/EmployeeService';
 import Modal from '../Modal';
+
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Employees = () => {
     const [option, setOption] = useState(false)
     const [modal, setModal] = useState(false)
-	const [animarModal, setAnimarModal] = useState(false)
+    const [animarModal, setAnimarModal] = useState(false)
 
     const [employees, setEmployees] = useState([]);
     const [editEmployee, setEditEmployee] = useState([]);
+    const [id, setId] = useState('')
+
 
     useEffect(() => {
         let mounted = true;
@@ -22,32 +27,40 @@ const Employees = () => {
     }, [])
 
     const handleNewEmployee = () => {
-		setModal(true)
+        setModal(true)
 
-		setTimeout(() => {
-			setAnimarModal(true)
-		}, 500);
-	}
-
-    const handleUpdate = (e,employee) =>{
-        e.preventDefault();
-        setModal(true);
+        setTimeout(() => {
+            setAnimarModal(true)
+        }, 500);
     }
 
-	const handdleDelete = id => {
-		
-	}
+    const handleUpdate = (e, employee) => {
+        e.preventDefault();
+
+        setId(employee);
+
+        setModal(true);
+
+        setTimeout(() => {
+            setAnimarModal(true)
+        }, 500);
+    }
+
+    const handdleDelete = id => {
+
+    }
+
+    
 
     return (
         <div className="container-fluid side-container">
-            <div className='nuevo-gasto'>
+            <div className='nuevo'>
                 <button type='buton'
                     onClick={handleNewEmployee}
                 >Nuevo </button>
             </div>
 
             <div className="row side-row" >
-                <p id="before-table"></p>
                 <table >
                     <thead>
                         <tr>
@@ -70,7 +83,7 @@ const Employees = () => {
                                 <td>
                                     <button
                                         type="button"
-                                        onClick={event => handleUpdate(event, stu)}
+                                        onClick={event => handleUpdate(event, stu.id)}
                                     >
                                         Editar
                                     </button>
@@ -86,16 +99,18 @@ const Employees = () => {
                             </tr>)}
                     </tbody>
                 </table>
-
-
             </div>
+
+            <ToastContainer />
 
             {modal && <Modal
                 setModal={setModal}
                 animarModal={animarModal}
                 setAnimarModal={setAnimarModal}
-                editEmployee={editEmployee}
-                setEditEmployee={setEditEmployee}
+                id={id}
+                setId={setId}
+                employees = {employees}
+                setEmployees = {setEmployees}
             />
             }
         </div>

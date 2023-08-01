@@ -29,9 +29,6 @@ const ProtectedRoute = () => {
                         <Sidebar 
                             menuCollapse={menuCollapse}
                         />
-            
-
-                        
                     </div>
 
                 ) : <Navigate to="/" />}
